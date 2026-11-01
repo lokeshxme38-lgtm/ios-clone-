@@ -242,7 +242,6 @@ textarea {
   position: absolute;
   inset: 0;
   padding: 70px 22px 0;
-  /* Default locked state: scaled down, blurred, invisible */
   transform: scale(.8);
   opacity: 0;
   filter: blur(15px);
@@ -1122,5 +1121,54 @@ iframe {
   * {
     transition: none !important;
     animation: none !important
+  }
+}
+
+/* 📱 Mobile Optimization */
+@media (max-width: 600px) {
+  #stage {
+    background: #000;
+    display: block;
+    overflow: hidden;
+  }
+
+  #device {
+    width: 100vw !important;
+    height: 100vh !important;
+    padding: 0;
+    border-radius: 0;
+    box-shadow: none;
+    transform: none !important;
+  }
+
+  .btn {
+    display: none;
+  }
+
+  #screen {
+    width: 100%;
+    height: 100%;
+    border-radius: 0;
+  }
+
+  #app {
+    border-radius: 0;
+  }
+
+  /* Account for actual device safe areas */
+  #dock {
+    bottom: calc(26px + env(safe-area-inset-bottom, 0px));
+  }
+
+  #indicator {
+    bottom: calc(8px + env(safe-area-inset-bottom, 0px));
+  }
+
+  .shutterbar {
+    bottom: calc(34px + env(safe-area-inset-bottom, 0px));
+  }
+
+  #lhint {
+    bottom: calc(56px + env(safe-area-inset-bottom, 0px));
   }
 }
