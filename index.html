@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Phone Simulator</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="stage">
+  <div id="device">
+    <span class="btn side" id="power" title="Lock / wake"></span>
+    <span class="btn vol v1"></span><span class="btn vol v2"></span><span class="btn vol v3"></span>
+    <div id="screen">
+      <div id="island"></div>
+      <div id="statusbar">
+        <span id="time">9:41</span>
+        <span class="sys"><i class="bars"></i><i class="wifi"></i><i class="batt"><b></b></i></span>
+      </div>
+
+      <!-- Home -->
+      <div id="home">
+        <div id="grid"></div>
+        <div id="dots"><i class="on"></i><i></i></div>
+        <div id="dock"></div>
+      </div>
+
+      <!-- App container -->
+      <div id="app"><div id="appbody"></div></div>
+
+      <!-- Lock -->
+      <div id="lock">
+        <div id="ldate"></div>
+        <div id="ltime"></div>
+        <div id="lhint">Swipe up to unlock</div>
+      </div>
+
+      <div id="indicator"></div>
+    </div>
+  </div>
+</div>
+<script src="script.js"></script>
+</body>
+</html>
