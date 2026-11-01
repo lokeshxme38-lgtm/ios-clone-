@@ -16,8 +16,13 @@
     }, duration);
   }
 
-  /* ---------- Device Fit ---------- */
+  /* ---------- Device Fit (Mobile Optimized) ---------- */
   function fit() {
+    if (innerWidth <= 600) {
+      S = 1;
+      $('#device').style.setProperty('--s', 1);
+      return;
+    }
     S = Math.min(innerHeight * 0.8 / 876, (innerWidth - 16) / 417);
     $('#device').style.setProperty('--s', S);
   }
@@ -88,7 +93,6 @@
 
   /* ---------- Unlock & Gesture Animations (iOS 27 Style) ---------- */
   function unlock() {
-    // Reset transitions for smooth automatic completion
     lock.style.transition = 'transform .65s var(--spring), opacity .5s ease, filter .5s ease';
     home.style.transition = 'transform .7s var(--spring), opacity .45s ease, filter .45s ease';
 
@@ -98,7 +102,6 @@
 
     setTimeout(() => {
       home.classList.remove('enter');
-      // Clear inline styles to rely on CSS classes again
       home.style.transform = '';
       home.style.opacity = '';
       home.style.filter = '';
@@ -126,11 +129,9 @@
     const d = (e.clientY - ly) / S;
     const dragY = Math.min(0, d);
 
-    // Interactive drag physics
     lock.style.transform = `translateY(${dragY}px)`;
 
-    // iOS 27 interactive background reveal
-    const progress = Math.min(1, Math.abs(dragY) / 350); // 0 to 1 based on swipe distance
+    const progress = Math.min(1, Math.abs(dragY) / 350);
     lock.style.opacity = `${1 - (progress * 0.5)}`;
     lock.style.filter = `blur(${progress * 10}px)`;
 
@@ -143,7 +144,6 @@
     if (ly === null) return;
     const d = (e.clientY - ly) / S; ly = null;
 
-    // Clear interactive inline styles to allow CSS classes to take over
     lock.style.transition = '';
     lock.style.transform = '';
     lock.style.opacity = '';
@@ -151,11 +151,9 @@
 
     home.style.transition = '';
 
-    // Threshold to unlock
     if (d < -110) {
       unlock();
     } else {
-      // Snap back to locked state
       if (Math.abs(d) < 6) {
         lock.classList.remove('bounce'); void lock.offsetWidth; lock.classList.add('bounce');
       }
